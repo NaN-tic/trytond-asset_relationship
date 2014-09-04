@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tryton>
+    <data>
+        <record model="ir.ui.view" id="asset_view_form">
+            <field name="model">asset</field>
+            <field name="inherit" ref="asset.asset_view_form"/>
+            <field name="name">asset_form</field>
+        </record>
+        <record model="ir.ui.view" id="asset_relation_all_view_form">
+            <field name="model">asset.relation.all</field>
+            <field name="type">form</field>
+            <field name="name">relation_all_form</field>
+        </record>
+        <record model="ir.ui.view" id="asset_relation_all_view_list">
+            <field name="model">asset.relation.all</field>
+            <field name="type">tree</field>
+            <field name="name">relation_all_list</field>
+        </record>
+        <record model="ir.action.act_window" id="act_asset_relation_all">
+            <field name="name">Asset Relation</field>
+            <field name="res_model">asset.relation.all</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_asset_relation_all_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="asset_relation_all_view_list"/>
+            <field name="act_window" ref="act_asset_relation_all"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_asset_relation_all_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="asset_relation_all_view_form"/>
+            <field name="act_window" ref="act_asset_relation_all"/>
+        </record>
+        <record model="ir.model.access" id="access_asset_relation_all">
+            <field name="model" search="[('model', '=', 'asset.relation.all')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_asset_relation_all_admin">
+            <field name="model" search="[('model', '=', 'asset.relation.all')]"/>
+            <field name="group" ref="asset.group_asset"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.ui.view" id="asset_relation_type_view_form">
+            <field name="model">asset.relation.type</field>
+            <field name="type">form</field>
+            <field name="name">relation_type_form</field>
+        </record>
+        <record model="ir.ui.view" id="asset_relation_type_view_list">
+            <field name="model">asset.relation.type</field>
+            <field name="type">tree</field>
+            <field name="name">relation_type_list</field>
+        </record>
+        <record model="ir.action.act_window" id="act_asset_relation_type">
+            <field name="name">Asset Relation Type</field>
+            <field name="res_model">asset.relation.type</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_asset_relation_type_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="asset_relation_type_view_list"/>
+            <field name="act_window" ref="act_asset_relation_type"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_asset_relation_type_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="asset_relation_type_view_form"/>
+            <field name="act_window" ref="act_asset_relation_type"/>
+        </record>
+        <record model="ir.model.access" id="access_asset_relation_type">
+            <field name="model" search="[('model', '=', 'asset.relation.type')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_asset_relation_type_admin">
+            <field name="model" search="[('model', '=', 'asset.relation.type')]"/>
+            <field name="group" ref="asset.group_asset_admin"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <menuitem action="act_asset_relation_all"
+            id="menu_asset_relation_all" parent="asset.menu_asset"
+            sequence="20" name="Asset Relations"/>
+
+        <menuitem action="act_asset_relation_type"
+            id="menu_asset_relation_type" parent="asset.menu_configuration"
+            sequence="20" name="Relation Types"/>
+    </data>
+</tryton>

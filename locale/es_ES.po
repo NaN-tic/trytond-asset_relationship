@@ -1,0 +1,147 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:asset,relations:"
+msgid "Relations"
+msgstr "Relaciones"
+
+msgctxt "field:asset.relation,create_date:"
+msgid "Create Date"
+msgstr "Fecha creación"
+
+msgctxt "field:asset.relation,create_uid:"
+msgid "Create User"
+msgstr "Usuario creación"
+
+msgctxt "field:asset.relation,from_:"
+msgid "From"
+msgstr "De"
+
+msgctxt "field:asset.relation,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:asset.relation,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:asset.relation,to:"
+msgid "To"
+msgstr "A"
+
+msgctxt "field:asset.relation,type:"
+msgid "Type"
+msgstr "Tipo"
+
+msgctxt "field:asset.relation,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:asset.relation,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "field:asset.relation.all,create_date:"
+msgid "Create Date"
+msgstr "Fecha creación"
+
+msgctxt "field:asset.relation.all,create_uid:"
+msgid "Create User"
+msgstr "Usuario creación"
+
+msgctxt "field:asset.relation.all,from_:"
+msgid "From"
+msgstr "De"
+
+msgctxt "field:asset.relation.all,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:asset.relation.all,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:asset.relation.all,to:"
+msgid "To"
+msgstr "A"
+
+msgctxt "field:asset.relation.all,type:"
+msgid "Type"
+msgstr "Tipo"
+
+msgctxt "field:asset.relation.all,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:asset.relation.all,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "field:asset.relation.type,create_date:"
+msgid "Create Date"
+msgstr "Fecha creación"
+
+msgctxt "field:asset.relation.type,create_uid:"
+msgid "Create User"
+msgstr "Usuario creación"
+
+msgctxt "field:asset.relation.type,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:asset.relation.type,name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:asset.relation.type,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:asset.relation.type,reverse:"
+msgid "Reverse Relation"
+msgstr "Relación inversa"
+
+msgctxt "field:asset.relation.type,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:asset.relation.type,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "model:asset.relation,name:"
+msgid "Asset Relation"
+msgstr "Relación activos"
+
+msgctxt "model:asset.relation.all,name:"
+msgid "Asset Relation All"
+msgstr "Relación activos"
+
+msgctxt "model:asset.relation.type,name:"
+msgid "Asset Relation Type"
+msgstr "Tipo de relación activos"
+
+msgctxt "model:ir.action,name:act_asset_relation_all"
+msgid "Asset Relation"
+msgstr "Relación activos"
+
+msgctxt "model:ir.action,name:act_asset_relation_type"
+msgid "Asset Relation Type"
+msgstr "Tipo de relación activos"
+
+msgctxt "model:ir.ui.menu,name:menu_asset_relation_all"
+msgid "Asset Relations"
+msgstr "Relaciones activos"
+
+msgctxt "model:ir.ui.menu,name:menu_asset_relation_type"
+msgid "Relation Types"
+msgstr "Tipos de relación"
+
+msgctxt "view:asset.relation.all:"
+msgid "Asset Relation"
+msgstr "Relación activos"
+
+msgctxt "view:asset.relation.type:"
+msgid "Asset Relation Type"
+msgstr "Tipo de relación activos"
