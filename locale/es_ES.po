@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -145,3 +145,7 @@ msgstr "Relación activos"
 msgctxt "view:asset.relation.type:"
 msgid "Asset Relation Type"
 msgstr "Tipo de relación activos"
+
+msgctxt "view:asset:"
+msgid "Relations"
+msgstr "Relaciones"
