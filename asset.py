@@ -1,9 +1,10 @@
 #This file is part of Tryton.  The COPYRIGHT file at the top level of
 #this repository contains the full copyright notices and license terms.
-from sql import Union, As, Column
+from sql import Union, As, Column, Null
 from trytond.pool import Pool, PoolMeta
 from trytond.model import ModelSQL, ModelView, fields
 from trytond.transaction import Transaction
+from trytond.pyson import If, Eval
 
 __all__ = ['Asset', 'RelationType', 'AssetRelation', 'AssetRelationAll']
 __metaclass__ = PoolMeta
@@ -27,11 +28,49 @@ class AssetRelation(ModelSQL):
     __name__ = 'asset.relation'
 
     from_ = fields.Many2One('asset', 'From', required=True, select=True,
-        ondelete='CASCADE')
+        ondelete='CASCADE',
+        domain=[
+            ('company', '=', Eval('context', {}).get('company', -1)),
+            ])
     to = fields.Many2One('asset', 'To', required=True, select=True,
-        ondelete='CASCADE')
+        ondelete='CASCADE',
+        domain=[
+            ('company', '=', Eval('context', {}).get('company', -1)),
+            ])
     type = fields.Many2One('asset.relation.type', 'Type', required=True,
         select=True)
+    company = fields.Many2One('company.company', 'Company', required=True,
+        domain=[
+            ('id', If(Eval('context', {}).contains('company'), '=', '!='),
+                Eval('context', {}).get('company', -1)),
+            ],
+        select=True)
+
+    @classmethod
+    def __register__(cls, module_name):
+        Asset = Pool().get('asset')
+
+        asset_table = Asset.__table__()
+        sql_table = cls.__table__()
+
+        super(AssetRelation, cls).__register__(module_name)
+        cursor = Transaction().cursor
+
+        # update asset relation that not have the company
+        sub_query = sql_table.join(asset_table,
+                    condition=sql_table.from_ == asset_table.id
+                    ).select(sql_table.id, asset_table.company,
+                    where=(sql_table.company == Null))
+        cursor.execute(*sub_query)
+
+        for relation_id, company_id in cursor.fetchall():
+            query = sql_table.update([sql_table.company], [company_id],
+                where=sql_table.id == relation_id)
+            cursor.execute(*query)
+
+    @staticmethod
+    def default_company():
+        return Transaction().context.get('company')
 
 
 class AssetRelationAll(AssetRelation, ModelView):
@@ -58,6 +97,8 @@ class AssetRelationAll(AssetRelation, ModelView):
                 },
             }
 
+        company_id = Transaction().context.get('company')
+
         columns = []
         reverse_columns = []
         for name, field in Relation._fields.iteritems():
@@ -80,7 +121,8 @@ class AssetRelationAll(AssetRelation, ModelView):
                 table = convert_from(table, sub_tables)
             return table
 
-        query = convert_from(None, tables).select(*columns)
+        query = convert_from(None, tables).select(*columns,
+            where=(relation.company == company_id))
         reverse_query = convert_from(None, reverse_tables).select(
             *reverse_columns)
         return Union(query, reverse_query, all_=True)
