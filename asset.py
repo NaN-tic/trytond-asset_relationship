@@ -28,15 +28,9 @@ class AssetRelation(ModelSQL):
     __name__ = 'asset.relation'
 
     from_ = fields.Many2One('asset', 'From', required=True, select=True,
-        ondelete='CASCADE',
-        domain=[
-            ('company', '=', Eval('context', {}).get('company', -1)),
-            ])
+        ondelete='CASCADE')
     to = fields.Many2One('asset', 'To', required=True, select=True,
-        ondelete='CASCADE',
-        domain=[
-            ('company', '=', Eval('context', {}).get('company', -1)),
-            ])
+        ondelete='CASCADE')
     type = fields.Many2One('asset.relation.type', 'Type', required=True,
         select=True)
     company = fields.Many2One('company.company', 'Company', required=True,
