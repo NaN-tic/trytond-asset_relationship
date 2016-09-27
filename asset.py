@@ -48,7 +48,7 @@ class AssetRelation(ModelSQL):
         sql_table = cls.__table__()
 
         super(AssetRelation, cls).__register__(module_name)
-        cursor = Transaction().cursor
+        cursor = Transaction().connection.cursor
 
         # update asset relation that not have the company
         sub_query = sql_table.join(asset_table,
