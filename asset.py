@@ -1,5 +1,5 @@
-#This file is part of Tryton.  The COPYRIGHT file at the top level of
-#this repository contains the full copyright notices and license terms.
+# This file is part of Tryton.  The COPYRIGHT file at the top level of
+# this repository contains the full copyright notices and license terms.
 from sql import Union, As, Column, Null
 from trytond.pool import Pool, PoolMeta
 from trytond.model import ModelSQL, ModelView, fields
@@ -7,11 +7,11 @@ from trytond.transaction import Transaction
 from trytond.pyson import If, Eval
 
 __all__ = ['Asset', 'RelationType', 'AssetRelation', 'AssetRelationAll']
-__metaclass__ = PoolMeta
 
 
 class Asset:
     __name__ = 'asset'
+    __metaclass__ = PoolMeta
     relations = fields.One2Many('asset.relation.all', 'from_', 'Relations')
 
 
@@ -87,7 +87,7 @@ class AssetRelationAll(AssetRelation, ModelView):
             None: (relation, None),
             'type': {
                 None: (type, (relation.type == type.id) &
-                    (type.reverse != None)),
+                    (type.reverse != Null)),
                 },
             }
 
