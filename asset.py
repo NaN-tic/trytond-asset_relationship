@@ -9,9 +9,8 @@ from trytond.pyson import If, Eval
 __all__ = ['Asset', 'RelationType', 'AssetRelation', 'AssetRelationAll']
 
 
-class Asset:
+class Asset(metaclass=PoolMeta):
     __name__ = 'asset'
-    __metaclass__ = PoolMeta
     relations = fields.One2Many('asset.relation.all', 'from_', 'Relations')
 
 
@@ -95,7 +94,7 @@ class AssetRelationAll(AssetRelation, ModelView):
 
         columns = []
         reverse_columns = []
-        for name, field in Relation._fields.iteritems():
+        for name, field in Relation._fields.items():
             if hasattr(field, 'get'):
                 continue
             column, reverse_column = cls._get_column(tables, reverse_tables,
@@ -109,7 +108,7 @@ class AssetRelationAll(AssetRelation, ModelView):
                 table = table.join(right, condition=condition)
             else:
                 table = right
-            for k, sub_tables in tables.iteritems():
+            for k, sub_tables in tables.items():
                 if k is None:
                     continue
                 table = convert_from(table, sub_tables)
@@ -174,7 +173,7 @@ class AssetRelationAll(AssetRelation, ModelView):
                     local_cache.clear()
 
         # Clean cursor cache
-        for cache in Transaction().connection.cursor().cache.itervalues():
+        for cache in Transaction().connection.cursor().cache.values():
             if cls.__name__ in cache:
                 for record in all_records:
                     for record_id in (record.id, record.reverse_id):
@@ -207,8 +206,8 @@ class AssetRelationAll(AssetRelation, ModelView):
         Transaction().counter += 1
 
         # Clean cursor cache
-        for cache in Transaction().connection.cursor().cache.values():
-            for cache in (cache, cache.get('_language_cache', {}).values()):
+        for cache in list(Transaction().cache.values()):
+            for cache in (cache, list(cache.get('_language_cache', {}).values())):
                 if cls.__name__ in cache:
                     for record in relations:
                         for record_id in (record.id, record.reverse_id):
