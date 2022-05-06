@@ -88,6 +88,18 @@
             <field name="perm_delete" eval="True"/>
         </record>
 
+        <record model="ir.rule.group" id="rule_group_asset_relation_all">
+            <field name="name">User in company</field>
+            <field name="model" search="[('model', '=', 'asset.relation.all')]"/>
+            <field name="global_p" eval="True"/>
+        </record>
+        <record model="ir.rule" id="rule_asset_relation_all">
+            <field name="domain"
+                eval="[('company', 'in', Eval('companies', []))]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_asset_relation_all"/>
+        </record>
+
         <menuitem action="act_asset_relation_all"
             id="menu_asset_relation_all" parent="asset.menu_asset"
             sequence="20" name="Asset Relations"/>
