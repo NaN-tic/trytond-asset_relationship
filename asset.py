@@ -26,18 +26,16 @@ class AssetRelation(ModelSQL):
     'Asset Relation'
     __name__ = 'asset.relation'
 
-    from_ = fields.Many2One('asset', 'From', required=True, select=True,
+    from_ = fields.Many2One('asset', 'From', required=True,
         ondelete='CASCADE')
-    to = fields.Many2One('asset', 'To', required=True, select=True,
+    to = fields.Many2One('asset', 'To', required=True,
         ondelete='CASCADE')
-    type = fields.Many2One('asset.relation.type', 'Type', required=True,
-        select=True)
+    type = fields.Many2One('asset.relation.type', 'Type', required=True)
     company = fields.Many2One('company.company', 'Company', required=True,
         domain=[
             ('id', If(Eval('context', {}).contains('company'), '=', '!='),
                 Eval('context', {}).get('company', -1)),
-            ],
-        select=True)
+            ])
 
     @classmethod
     def __register__(cls, module_name):
